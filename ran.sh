@@ -11,7 +11,7 @@ function init() {
     
     echo "init: clone blueprint"
     rm -rf "$PATH_BP"
-    git clone --branch subnet-fix https://gitlab.eurecom.fr/oai/orchestration/blueprints.git
+    git clone --branch subnet-fix https://gitlab.eurecom.fr/turletti/blueprints.git
 
     echo "init: Setting up ran IP forwarding rules"
     sysctl net.ipv4.conf.all.forwarding=1
