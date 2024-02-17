@@ -6,6 +6,8 @@ PATH_MEP="$PATH_BP/mep"
 function init() {
     nodecore=$1
     shift
+    nodemep=$1
+    shift
     
     echo "init: clone blueprint"
     rm -rf "$PATH_BP"
@@ -22,6 +24,19 @@ function init() {
     esac
     echo "ip route replace 192.168.70.0/24 via 192.168.3.$suffix_core"
     ip route replace 192.168.70.0/24 via 192.168.3."$suffix_core" 
+    case $nodemep in
+	fit0*) suffix_mep=${nodemep#*fit0} ;;
+	fit*) suffix_mep=${nodemep#*fit} ;;
+	*) echo "init: unknown mep node $nodemep" ;;
+    esac
+    echo "ip route replace 192.168.80.2 via 192.168.3.$suffix_mep"
+    ip route replace 192.168.80.2 via 192.168.3."$suffix_mep"
+    echo "ip route replace 192.168.80.4 via 192.168.3.$suffix_mep"
+    ip route replace 192.168.80.4 via 192.168.3."$suffix_mep"
+    echo "ip route replace 192.168.80.5 via 192.168.3.$suffix_mep"
+    ip route replace 192.168.80.5 via 192.168.3."$suffix_mep"
+    echo "ip route replace 192.168.80.169 via 192.168.3.$suffix_mep"
+    ip route replace 192.168.80.169 via 192.168.3."$suffix_mep"
 }
 
 

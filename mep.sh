@@ -16,7 +16,7 @@ function init() {
     if [ $(grep -ic "oai-mep.org" /etc/hosts) -eq 0 ]
     then
 	echo 'init: add oai-mep.org IP address to /etc/hosts'
-	echo '192.168.90.2 oai-mep.org' >> /etc/hosts
+	echo '192.168.80.2 oai-mep.org' >> /etc/hosts
     else
 	echo 'init: oai-mep.org IP address already set in /etc/hosts'
     fi
@@ -37,10 +37,20 @@ function init() {
 	pc02) suffix_ran="62" ;;
 	*) echo "init: unknown ran node $noderan" ;;
     esac
-    echo "ip route replace 192.168.70.0/24 via 192.168.3."$suffix_core" dev control"
+    echo "ip route replace 192.168.70.0/24 via 192.168.3.$suffix_core dev control"
     ip route replace 192.168.70.0/24 via 192.168.3."$suffix_core" dev control
-    echo "ip route replace 192.168.80.0/24 via 192.168.3."$suffix_ran" dev control"
-    ip route replace 192.168.80.0/24 via 192.168.3."$suffix_ran" dev control
+    echo "ip route replace 192.168.80.161 via 192.168.3.$suffix_ran dev control"
+    ip route replace 192.168.80.161 via 192.168.3."$suffix_ran" dev control
+    echo "ip route replace 192.168.80.164 via 192.168.3.$suffix_ran dev control"
+    ip route replace 192.168.80.164 via 192.168.3."$suffix_ran" dev control
+    echo "ip route replace 192.168.80.165 via 192.168.3.$suffix_ran dev control"
+    ip route replace 192.168.80.165 via 192.168.3."$suffix_ran" dev control
+    echo "ip route replace 192.168.80.166 via 192.168.3.$suffix_ran dev control"
+    ip route replace 192.168.80.166 via 192.168.3."$suffix_ran" dev control
+    echo "ip route replace 192.168.80.160 via 192.168.3.$suffix_ran dev control"
+    ip route replace 192.168.80.160 via 192.168.3."$suffix_ran" dev control
+    echo "ip route replace 192.168.82.160 via 192.168.3.$suffix_ran dev control"
+    ip route replace 192.168.82.160 via 192.168.3."$suffix_ran" dev control
 }
 
 
